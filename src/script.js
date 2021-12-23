@@ -420,3 +420,5 @@ const tick = () => {
 };
 
 tick();
+
+console.log("quick test");
