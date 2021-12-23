@@ -20,8 +20,6 @@ scene.background = new THREE.Color("#f4f4f4");
 /**
  * Models
  */
-// Draco Loader mit Web-Assembly laden und dem gltfLoader zur Verfügung stellen - Draco Loader wird nur geladen, wenn er gebraucht wird
-// Draco Loader lohnt sich erst bei großen Dateien
 const gltfLoader = new GLTFLoader();
 
 /**
@@ -35,11 +33,11 @@ const phongMat = new THREE.MeshPhongMaterial({
 
 const customUniforms = {
   uTime: { value: 0 },
-  uFrequency: { value: 3.0 },
-  uHeight: { value: 0.25 },
+  uFrequency: { value: 30.0 },
+  uHeight: { value: 0.05 },
 };
 
-// Vertex Shader - Outside of void_main
+// Vertex Shader Injection - Outside of void_main
 phongMat.onBeforeCompile = (shader) => {
   shader.uniforms.uTime = customUniforms.uTime;
   shader.uniforms.uFrequency = customUniforms.uFrequency;
@@ -284,6 +282,7 @@ depthMaterial.onBeforeCompile = (shader) => {
   );
 };
 
+// Load Head and applay custom materials
 gltfLoader.load("/models/head/head.gltf", (gltf) => {
   gltfScene = gltf.scene;
 
@@ -304,22 +303,32 @@ gltfLoader.load("/models/head/head.gltf", (gltf) => {
 /**
  * Floor
  */
-
 const floorMat = new THREE.MeshStandardMaterial({
-  color: "#6F989B",
+  color: "#f4f4f4",
   metalness: 0.2,
   roughness: 0.5,
 });
 
-gltfLoader.load("/models/plane/plane.gltf", (gltf) => {
-  gltf.scene.children[1].material = floorMat;
+const floorGeometry = new THREE.PlaneBufferGeometry(74, 47);
+const floor = new THREE.Mesh(floorGeometry, floorMat);
 
-  gltf.scene.position.x = 3;
-  gltf.scene.position.y = -1;
-  gltf.scene.children[1].receiveShadow = true;
+floor.rotation.x = -0.57;
+floor.position.x = 0.5;
+floor.rotation.y = 0.71;
+floor.position.y = -0.24;
+floor.rotation.z = 0.19;
+floor.position.z = -3.97;
 
-  scene.add(gltf.scene);
-});
+floor.receiveShadow = true;
+
+gui.add(floor.rotation, "x").min(-1).max(1).step(0.01);
+gui.add(floor.position, "x").min(-30).max(30).step(0.01);
+gui.add(floor.rotation, "y").min(-1).max(1).step(0.01);
+gui.add(floor.position, "y").min(-30).max(30).step(0.01);
+gui.add(floor.rotation, "z").min(-1).max(1).step(0.01);
+gui.add(floor.position, "z").min(-30).max(30).step(0.01);
+
+scene.add(floor);
 
 /**
  * Lights
@@ -375,8 +384,7 @@ scene.add(camera);
 
 // Controls
 const controls = new OrbitControls(camera, canvas);
-controls.target.set(0, 0.75, 0);
-controls.enableDamping = true;
+controls.dispose();
 
 /**
  * Renderer
@@ -406,11 +414,8 @@ const tick = () => {
 
   // Rotation
   if (gltfScene) {
-    gltfScene.children[0].rotation.z = -0.2 * elapsedTime;
+    gltfScene.children[0].rotation.z = Math.sin(elapsedTime * 0.3);
   }
-
-  // Update controls
-  controls.update();
 
   // Render
   renderer.render(scene, camera);
@@ -420,5 +425,3 @@ const tick = () => {
 };
 
 tick();
-
-console.log("another quick test");
