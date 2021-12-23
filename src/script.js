@@ -35,17 +35,24 @@ const phongMat = new THREE.MeshPhongMaterial({
 
 const customUniforms = {
   uTime: { value: 0 },
+  uFrequency: { value: 3.0 },
+  uHeight: { value: 0.25 },
 };
 
 // Vertex Shader - Outside of void_main
 phongMat.onBeforeCompile = (shader) => {
   shader.uniforms.uTime = customUniforms.uTime;
+  shader.uniforms.uFrequency = customUniforms.uFrequency;
+  shader.uniforms.uHeight = customUniforms.uHeight;
+
   shader.vertexShader = shader.vertexShader.replace(
     "#include <common>",
     `
     #include <common>
 
     uniform float uTime;
+    uniform float uFrequency;
+    uniform float uHeight;
 
     // Classic Perlin 3D Noise 
     // by Stefan Gustavson
@@ -139,11 +146,24 @@ phongMat.onBeforeCompile = (shader) => {
     `
     #include <begin_vertex>
 
-    float elevation = cnoise(vec3(transformed.xz, uTime));
+    float elevation = cnoise(vec3(transformed.xz * uFrequency, uTime)) * uHeight;
     transformed.xyz += elevation * 0.2;
     `
   );
 };
+
+gui
+  .add(customUniforms.uFrequency, "value")
+  .min(0)
+  .max(10)
+  .step(0.01)
+  .name("Noise Frequency");
+gui
+  .add(customUniforms.uHeight, "value")
+  .min(0)
+  .max(3)
+  .step(0.01)
+  .name("Noise Height");
 
 let gltfScene;
 
