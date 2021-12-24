@@ -300,8 +300,6 @@ gltfLoader.load("/models/head/head.gltf", (gltf) => {
   scene.add(gltf.scene);
 });
 
-console.log("test");
-
 /**
  * Floor
  */

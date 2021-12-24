@@ -10,6 +10,13 @@
   font-weight: 300;
 }
 
+/* -- VARIABLES --- */
+:root {
+  --dark-grey: #2e2e2e;
+  --blue: #348aa7;
+  --blue-light: #73bcd4;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -19,7 +26,7 @@ html,
 body {
   overflow: hidden;
   font-family: "Spectral", "times";
-  color: #2e2e2e;
+  color: var(--dark-grey);
 }
 
 .webgl {
@@ -31,6 +38,14 @@ body {
 
 .overlay {
   position: absolute;
+}
+
+.links {
+  top: 5%;
+  left: 5.5%;
+}
+
+.description {
   bottom: 5%;
   left: 5%;
 }
@@ -52,10 +67,16 @@ p {
 
 a {
   text-decoration: none;
-  color: #348aa7;
+  color: var(--blue);
 }
 
 a:hover {
   text-decoration: none;
-  color: #73bcd4;
+  color: var(--blue-light);
+}
+
+.first-line {
+  position: absolute;
+  top: -10%;
+  left: 0.6%;
 }
