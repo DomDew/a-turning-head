@@ -1,19 +1,61 @@
-*
-{
-    margin: 0;
-    padding: 0;
+@font-face {
+  font-family: "Spectral";
+  src: url("/assets/fonts/Spectral-Regular.ttf") format("truetype");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: url("/assets/fonts/Lato-Light.ttf") format("truetype");
+  font-weight: 300;
+}
+
+* {
+  margin: 0;
+  padding: 0;
 }
 
 html,
-body
-{
-    overflow: hidden;
+body {
+  overflow: hidden;
+  font-family: "Spectral", "times";
+  color: #2e2e2e;
 }
 
-.webgl
-{
-    position: fixed;
-    top: 0;
-    left: 0;
-    outline: none;
+.webgl {
+  position: fixed;
+  top: 0;
+  left: 0;
+  outline: none;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 5%;
+  left: 5%;
+}
+
+h1 {
+  font-size: 18vw;
+  margin: 0;
+  padding: 0;
+  line-height: 14vw;
+}
+
+p {
+  font-family: "Lato", "sans-serif";
+  font-size: 1vw;
+  margin: 0;
+  padding: 0;
+  font-weight: 700;
+}
+
+a {
+  text-decoration: none;
+  color: #348aa7;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #73bcd4;
 }
