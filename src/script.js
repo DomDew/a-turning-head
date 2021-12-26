@@ -4,6 +4,10 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import * as dat from "lil-gui";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
+window.addEventListener("mousemove", (event) => {
+  console.log(event.clientX);
+});
+
 /**
  * Base
  */
@@ -309,7 +313,7 @@ const floorMat = new THREE.MeshStandardMaterial({
   roughness: 0.5,
 });
 
-const floorGeometry = new THREE.PlaneBufferGeometry(74, 47);
+const floorGeometry = new THREE.PlaneBufferGeometry(200, 67);
 const floor = new THREE.Mesh(floorGeometry, floorMat);
 
 floor.rotation.x = -0.57;
