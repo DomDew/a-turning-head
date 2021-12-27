@@ -29,18 +29,14 @@ module.exports = {
         use: ["html-loader"],
       },
 
-      // JS
+      // TS/JS
       {
-        test: /\.js$/,
+        test: /\.(js|ts)$/,
+        loader: require.resolve("babel-loader"),
         exclude: /node_modules/,
-        use: ["babel-loader"],
-      },
-
-      // TS
-      {
-        test: /\.ts?$/,
-        use: "ts-loader",
-        exclude: /node_modules/,
+        options: {
+          presets: [require.resolve("@babel/preset-typescript")],
+        },
       },
 
       // CSS
@@ -78,6 +74,6 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: [".ts"],
+    extensions: [".ts", ".js"],
   },
 };

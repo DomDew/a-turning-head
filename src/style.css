@@ -38,6 +38,7 @@ body {
 
 .overlay {
   position: absolute;
+  z-index: 10;
 }
 
 .links {
