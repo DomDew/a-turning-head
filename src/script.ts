@@ -8,8 +8,9 @@ window.addEventListener("mousemove", (event) => {
 });
 
 // Canvas
-const canvas: HTMLCanvasElement = document.querySelector("canvas.webgl") as HTMLCanvasElement;
-
+const canvas: HTMLCanvasElement = document.querySelector(
+  "canvas.webgl"
+) as HTMLCanvasElement;
 
 // Scene
 const scene = new THREE.Scene();
@@ -279,8 +280,8 @@ gltfLoader.load("/models/head/head.gltf", (gltf) => {
     }
   });
 
-  gltf.scene.position.y = 1;
-  gltf.scene.position.x = 3;
+  gltf.scene.position.y = -2;
+  gltf.scene.position.x = 1;
 
   scene.add(gltf.scene);
 });
@@ -298,7 +299,7 @@ const floorGeometry = new THREE.PlaneBufferGeometry(200, 67);
 const floor = new THREE.Mesh(floorGeometry, floorMat);
 
 floor.rotation.x = -0.57;
-floor.position.x = 0.5;
+floor.position.x = -3;
 floor.rotation.y = 0.71;
 floor.position.y = -0.24;
 floor.rotation.z = 0.19;
@@ -361,7 +362,7 @@ camera.position.set(1.8, 7.29, 10);
 scene.add(camera);
 
 // Controls
-const controls = new OrbitControls(camera, canvas)
+const controls = new OrbitControls(camera, canvas);
 controls.dispose();
 
 /**
@@ -369,7 +370,7 @@ controls.dispose();
  */
 const renderer = new THREE.WebGLRenderer({
   antialias: true,
-  canvas: canvas
+  canvas: canvas,
 });
 document.body.appendChild(renderer.domElement);
 renderer.shadowMap.enabled = true;
