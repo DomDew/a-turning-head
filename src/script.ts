@@ -3,9 +3,8 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
-window.addEventListener("mousemove", (event) => {
-  console.log(event.clientX);
-});
+// Check for Touch Device
+const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
 
 // Canvas
 const canvas: HTMLCanvasElement = document.querySelector(
@@ -379,6 +378,24 @@ renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
 /**
+ * Cursor
+ */
+// customUniforms.uHeight manipulieren
+const cursor = document.getElementById("cursor");
+
+window.addEventListener("mousemove", (event) => {
+  cursor.style.top = event.pageY + "px";
+  cursor.style.left = event.pageX + "px";
+
+  // Calculate Distortion Level
+  if (!isTouchDevice) {
+    const distY = (1.5 / sizes.height) * event.pageY;
+    const distX = (1.5 / sizes.width) * event.pageX;
+    customUniforms.uHeight.value = distY + distX;
+  }
+});
+
+/**
  * Animate
  */
 const clock = new THREE.Clock();
@@ -394,6 +411,10 @@ const tick = () => {
   // Rotation
   if (gltfScene) {
     gltfScene.children[0].rotation.z = Math.sin(elapsedTime * 0.3);
+  }
+
+  if (isTouchDevice) {
+    customUniforms.uHeight.value = Math.sin(elapsedTime * 0.3) * 2;
   }
 
   // Render
