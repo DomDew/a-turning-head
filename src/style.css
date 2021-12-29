@@ -1,3 +1,4 @@
+/* --- FONTS --- */
 @font-face {
   font-family: "Spectral";
   src: url("/assets/fonts/Spectral-Regular.ttf") format("truetype");
@@ -10,7 +11,13 @@
   font-weight: 300;
 }
 
-/* -- VARIABLES --- */
+@font-face {
+  font-family: "Lato";
+  src: url("/assets/fonts/Lato-Bold.ttf") format("truetype");
+  font-weight: 700;
+}
+
+/* --- VARIABLES --- */
 :root {
   --dark-grey: #2e2e2e;
   --blue: #348aa7;
@@ -20,13 +27,146 @@
 * {
   margin: 0;
   padding: 0;
+  cursor: none;
 }
 
+/* --- MAIN ---  */
 html,
 body {
   overflow: hidden;
   font-family: "Lato", "sans-serif";
   color: var(--dark-grey);
+  background-color: #fff;
+}
+
+h1 {
+  font-family: "Spectral", "times";
+  font-size: 14vw;
+  margin: 0;
+  padding: 0;
+  line-height: 14vw;
+  transform: translateX(-0.5vw);
+}
+
+p {
+  font-size: 1vw;
+  margin: 0;
+  padding: 0;
+  font-weight: 300;
+}
+
+a {
+  text-decoration: none;
+  font-size: 3vw;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:visited {
+  color: var(--dark-grey);
+}
+
+@keyframes cursorDistortion {
+  0% {
+    border-radius: 36% 56% 67% 49%;
+    transform: scale(1, 1) translate(-50%, -50%) skew(11deg, 5deg) rotate(0deg);
+  }
+  17% {
+    border-radius: 35% 78% 36% 69%;
+    transform: scale(1, 0.9) translate(-50%, -50%) skew(-13deg, 11deg)
+      rotate(49deg);
+  }
+  33% {
+    border-radius: 35% 58% 67% 58%;
+    transform: scale(0.8, 1.2) translate(-50%, -50%) skew(3deg, -8deg)
+      rotate(-7deg);
+  }
+
+  50% {
+    border-radius: 79% 93% 49% 37%;
+    transform: scale(1.1, 0.7) translate(-50%, -50%) skew(9deg, 11deg)
+      rotate(8deg);
+  }
+
+  58% {
+    border-radius: 43% 24% 81% 12%;
+    transform: scale(1.1, 0.7) translate(-50%, -50%) skew(9deg, 11deg)
+      rotate(-16deg);
+  }
+
+  67% {
+    border-radius: 87% 31% 38% 81%;
+    transform: scale(0.9, 1.2) translate(-50%, -50%) skew(9deg, 11deg)
+      rotate(31deg);
+  }
+
+  100% {
+    border-radius: 36% 56% 67% 49%;
+    transform: scale(1, 1) translate(-50%, -50%) skew(11deg, 5deg) rotate(0deg);
+  }
+}
+
+@keyframes cursorDistortionBefore {
+  0% {
+    border-radius: 35% 78% 36% 69%;
+    transform: scale(1, 0.9) skew(-13deg, 11deg) rotate(49deg);
+  }
+  11% {
+    border-radius: 79% 93% 49% 37%;
+    transform: scale(1.1, 0.7) skew(9deg, 11deg) rotate(8deg);
+  }
+
+  26% {
+    border-radius: 43% 24% 81% 12%;
+    transform: scale(1.1, 0.7) skew(9deg, 11deg) rotate(-16deg);
+  }
+
+  42% {
+    border-radius: 35% 58% 67% 58%;
+    transform: scale(0.8, 1.2) skew(3deg, -8deg) rotate(-7deg);
+  }
+
+  67% {
+    border-radius: 87% 31% 38% 81%;
+    transform: scale(0.9, 1.2) skew(9deg, 11deg) rotate(31deg);
+  }
+
+  72% {
+    border-radius: 36% 56% 67% 49%;
+    transform: scale(1, 1) skew(11deg, 5deg) rotate(0deg);
+  }
+
+  100% {
+    border-radius: 35% 78% 36% 69%;
+    transform: scale(1, 0.9) skew(-13deg, 11deg) rotate(49deg);
+  }
+}
+
+.cursor {
+  position: absolute;
+  width: 0.7vw;
+  height: 0.7vw;
+  background: var(--dark-grey);
+  z-index: 5;
+  transform: translate(-50%, -50%);
+  animation: cursorDistortion 5s infinite;
+  mix-blend-mode: exclusion;
+}
+
+.cursor::before {
+  content: "";
+  position: absolute;
+  width: 0.8vw;
+  height: 0.8vw;
+  background: var(--dark-grey);
+  z-index: 5;
+  animation: cursorDistortionBefore 3s infinite;
+}
+
+.hover-invert:hover ~ .cursor {
+  background: white;
 }
 
 .webgl {
@@ -43,62 +183,59 @@ body {
   height: 100vh;
 }
 
-.overlay {
-  position: absolute;
-  z-index: 10;
-}
-
 .navigation {
+  position: relative;
+  z-index: 20;
   display: flex;
-
-  padding: 2em 5%;
-
+  padding: 0.5em;
   border-bottom: solid 1px var(--dark-grey);
-
   justify-content: space-between;
-}
-
-.description {
-  bottom: 5%;
-  left: 5%;
 }
 
 .logo-container {
   display: flex;
-}
-
-h1 {
-  font-family: "Spectral", "times";
-  font-size: 18vw;
-  margin: 0;
-  padding: 0;
-  line-height: 14vw;
-}
-
-p {
-  font-size: 1vw;
-  margin: 0;
-  padding: 0;
   font-weight: 700;
 }
 
-a {
-  text-decoration: none;
-  font-size: 1vw;
+.logo-letter {
+  font-weight: 700;
+  font-size: 3vw;
 }
 
-a:hover {
-  text-decoration: none;
+.skills {
+  border-bottom: solid 1px var(--dark-grey);
+  padding: 2em 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
-a:visited {
-  color: var(--dark-grey);
+.first-line {
+  position: absolute;
+  top: 0.5em;
+  left: 10px;
+}
+
+.description {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5em;
+}
+
+.description-text {
+  width: 20%;
+}
+
+.description-text:last-of-type {
+  text-align: right;
 }
 
 .link-main {
   display: flex;
   align-items: center;
   justify-content: center;
+  color: var(--dark-grey);
 }
 
 .arrow {
@@ -106,7 +243,7 @@ a:visited {
   margin-left: 0.4em;
   display: inline;
   width: 2vw;
-  transition: 0.2s;
+  transition: d 0.2s;
 }
 
 .arrow path,
@@ -130,10 +267,4 @@ a:visited {
 
 .link-main:visited path:nth-child(3) {
   d: path("M0,5 L8,9");
-}
-
-.first-line {
-  position: absolute;
-  top: -10%;
-  left: 0.6%;
 }
