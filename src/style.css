@@ -25,7 +25,7 @@
 html,
 body {
   overflow: hidden;
-  font-family: "Spectral", "times";
+  font-family: "Lato", "sans-serif";
   color: var(--dark-grey);
 }
 
@@ -36,14 +36,26 @@ body {
   outline: none;
 }
 
+.content-container {
+  position: relative;
+  z-index: 10;
+  width: 100vw;
+  height: 100vh;
+}
+
 .overlay {
   position: absolute;
   z-index: 10;
 }
 
-.links {
-  top: 5%;
-  left: 5.5%;
+.navigation {
+  display: flex;
+
+  padding: 2em 5%;
+
+  border-bottom: solid 1px var(--dark-grey);
+
+  justify-content: space-between;
 }
 
 .description {
@@ -51,7 +63,12 @@ body {
   left: 5%;
 }
 
+.logo-container {
+  display: flex;
+}
+
 h1 {
+  font-family: "Spectral", "times";
   font-size: 18vw;
   margin: 0;
   padding: 0;
@@ -59,7 +76,6 @@ h1 {
 }
 
 p {
-  font-family: "Lato", "sans-serif";
   font-size: 1vw;
   margin: 0;
   padding: 0;
@@ -68,12 +84,52 @@ p {
 
 a {
   text-decoration: none;
-  color: var(--blue);
+  font-size: 1vw;
 }
 
 a:hover {
   text-decoration: none;
-  color: var(--blue-light);
+}
+
+a:visited {
+  color: var(--dark-grey);
+}
+
+.link-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.arrow {
+  margin-top: 0.2em;
+  margin-left: 0.4em;
+  display: inline;
+  width: 2vw;
+  transition: 0.2s;
+}
+
+.arrow path,
+.arrow line {
+  transition: 0.2s;
+  stroke: var(--dark-grey);
+  stroke-width: 0.5;
+}
+
+.link-main:hover path:nth-child(2) {
+  d: path("M0,5 L8,1");
+}
+
+.link-main:hover path:nth-child(3) {
+  d: path("M0,5 L8,9");
+}
+
+.link-main:visited path:nth-child(2) {
+  d: path("M0,5 L8,1");
+}
+
+.link-main:visited path:nth-child(3) {
+  d: path("M0,5 L8,9");
 }
 
 .first-line {
