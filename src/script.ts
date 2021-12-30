@@ -2,6 +2,9 @@ import "./style.css";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import stretchText from "./stretchText";
+
+stretchText();
 
 // Check for Touch Device
 const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
@@ -289,7 +292,7 @@ gltfLoader.load("/models/head/head.gltf", (gltf) => {
  * Floor
  */
 const floorMat = new THREE.MeshStandardMaterial({
-  color: "#f4f4f4",
+  color: "#e4e4e4",
   metalness: 0.2,
   roughness: 0.5,
 });
@@ -345,6 +348,9 @@ window.addEventListener("resize", () => {
   // Update renderer
   renderer.setSize(sizes.width, sizes.height);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  // Update text stretch
+  stretchText();
 });
 
 /**

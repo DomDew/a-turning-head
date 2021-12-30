@@ -45,7 +45,7 @@ h1 {
   margin: 0;
   padding: 0;
   line-height: 14vw;
-  transform: translateX(-0.5vw);
+  transform: translateX(-0.3vw);
 }
 
 p {
@@ -211,6 +211,14 @@ a:visited {
   position: relative;
 }
 
+.header {
+  width: 100%;
+}
+
+.stretch-span {
+  white-space: nowrap;
+}
+
 .first-line {
   position: absolute;
   top: 0.5em;
@@ -239,8 +247,7 @@ a:visited {
 }
 
 .arrow {
-  margin-top: 0.2em;
-  margin-left: 0.4em;
+  margin: 0.2em 0.4em 0 0.4em;
   display: inline;
   width: 2vw;
   transition: d 0.2s;
@@ -250,21 +257,5 @@ a:visited {
 .arrow line {
   transition: 0.2s;
   stroke: var(--dark-grey);
-  stroke-width: 0.5;
-}
-
-.link-main:hover path:nth-child(2) {
-  d: path("M0,5 L8,1");
-}
-
-.link-main:hover path:nth-child(3) {
-  d: path("M0,5 L8,9");
-}
-
-.link-main:visited path:nth-child(2) {
-  d: path("M0,5 L8,1");
-}
-
-.link-main:visited path:nth-child(3) {
-  d: path("M0,5 L8,9");
+  stroke-width: 2;
 }
