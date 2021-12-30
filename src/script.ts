@@ -292,9 +292,9 @@ gltfLoader.load("/models/head/head.gltf", (gltf) => {
  * Floor
  */
 const floorMat = new THREE.MeshStandardMaterial({
-  color: "#e4e4e4",
-  metalness: 0.2,
-  roughness: 0.5,
+  color: "#ffffff",
+  metalness: 0.4,
+  roughness: 0.65,
 });
 
 const floorGeometry = new THREE.PlaneBufferGeometry(200, 67);
