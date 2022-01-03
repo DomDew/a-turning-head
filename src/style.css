@@ -144,6 +144,24 @@ a:visited {
   }
 }
 
+@keyframes hoverPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1.5, 1.5);
+  }
+
+  33% {
+    transform: translate(-50%, -50%) scale(1.4, 1.4);
+  }
+
+  66% {
+    transform: translate(-50%, -50%) scale(1.6, 1.6);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1.5, 1.5);
+  }
+}
+
 .cursor {
   position: absolute;
   width: 0.7vw;
@@ -153,6 +171,21 @@ a:visited {
   transform: translate(-50%, -50%);
   animation: cursorDistortion 5s infinite;
   mix-blend-mode: exclusion;
+}
+
+.hover {
+  border-radius: 50%;
+  animation: hoverPulse 3s infinite;
+}
+
+.hover::before {
+  content: "";
+  position: absolute;
+  width: 0.8vw;
+  height: 0.8vw;
+  background: white;
+  z-index: 5;
+  animation: cursorDistortionBefore 3s infinite;
 }
 
 .cursor::before {

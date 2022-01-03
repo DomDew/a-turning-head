@@ -3,8 +3,10 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import stretchText from "./stretchText";
+import cursorHover from "./cursorHover";
 
 stretchText();
+cursorHover();
 
 // Check for Touch Device
 const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
@@ -293,7 +295,7 @@ gltfLoader.load("/models/head/head.gltf", (gltf) => {
  */
 const floorMat = new THREE.MeshStandardMaterial({
   color: "#ffffff",
-  metalness: 0.4,
+  metalness: 0.3,
   roughness: 0.65,
 });
 
