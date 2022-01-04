@@ -1,6 +1,6 @@
 const cursorHover = () => {
   const hoverElements = document.querySelectorAll(".hoverable");
-  const cursor = document.getElementById("cursor");
+  const cursor = document.getElementById("cursor") as HTMLElement;
 
   hoverElements.forEach((element) => {
     element.addEventListener("mouseover", () => {

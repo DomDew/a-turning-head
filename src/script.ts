@@ -389,7 +389,7 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
  * Cursor
  */
 // customUniforms.uHeight manipulieren
-const cursor = document.getElementById("cursor");
+const cursor = document.getElementById("cursor") as HTMLElement;
 
 window.addEventListener("mousemove", (event) => {
   cursor.style.top = event.pageY + "px";
