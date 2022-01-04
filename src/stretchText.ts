@@ -7,7 +7,7 @@ const stretchText = () => {
 
   elements.forEach((element) => {
     const width = element.clientWidth;
-    const charNum = element.textContent.length;
+    const charNum = element.textContent ? element.textContent.length : 0;
     const spacing = width / charNum;
     const text = element.textContent;
 
