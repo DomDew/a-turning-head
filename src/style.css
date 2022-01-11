@@ -154,16 +154,20 @@ a:visited {
 
 @keyframes fadeIn {
   from {
-    display: block;
     opacity: 0;
   }
   to {
-    display: block;
     opacity: 1;
   }
 }
 
 @keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 .cursor {
@@ -238,6 +242,8 @@ a:visited {
   position: relative;
   border-bottom: solid 1px var(--dark-grey);
   padding: 2em 0.5em;
+  display: grid;
+  grid-template-columns: 1fr;
 }
 
 .header {
@@ -249,15 +255,22 @@ a:visited {
   line-height: 12vw;
   transform: translateX(0vw);
   width: 100%;
+  grid-row-start: 1;
+  grid-column-start: 1;
   text-align: center;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   text-transform: uppercase;
+  opacity: 0;
 }
 
 .fade-in {
-  animation: fadeIn 0.3s;
+  animation: fadeIn 0.3s forwards 0.3s;
+}
+
+.fade-out {
+  animation: fadeOut 0.3s forwards;
 }
 
 .stretch-span {
