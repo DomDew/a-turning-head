@@ -39,15 +39,6 @@ body {
   background-color: #fff;
 }
 
-h1 {
-  font-family: "Spectral", "times";
-  font-size: 14vw;
-  margin: 0;
-  padding: 0;
-  line-height: 14vw;
-  transform: translateX(-0.3vw);
-}
-
 p {
   font-size: 1vw;
   margin: 0;
@@ -161,6 +152,20 @@ a:visited {
   }
 }
 
+@keyframes fadeIn {
+  from {
+    display: block;
+    opacity: 0;
+  }
+  to {
+    display: block;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+}
+
 .cursor {
   position: absolute;
   width: 0.7vw;
@@ -230,16 +235,29 @@ a:visited {
 }
 
 .skills {
+  position: relative;
   border-bottom: solid 1px var(--dark-grey);
   padding: 2em 0.5em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
 }
 
 .header {
+  font-family: "Spectral", "times";
+  font-weight: bold;
+  font-size: 12vw;
+  margin: 0;
+  padding: 0;
+  line-height: 12vw;
+  transform: translateX(0vw);
   width: 100%;
+  text-align: center;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  text-transform: uppercase;
+}
+
+.fade-in {
+  animation: fadeIn 0.3s;
 }
 
 .stretch-span {
