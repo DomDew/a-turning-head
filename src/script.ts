@@ -5,7 +5,6 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import stretchText from "./stretchText";
 import cursorHover from "./cursorHover";
 import cycleSkills from "./cycleSkills";
-import perlinNoiseInjection from "./shaders/perlinNoiseInjectionVertexShader";
 import perlinNoiseInjectionVertexShader from "./shaders/perlinNoiseInjectionVertexShader";
 
 stretchText();
@@ -14,6 +13,9 @@ cycleSkills();
 
 // Check for Touch Device
 const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+
+// Queries
+const loadingOverlay = document.getElementById("loadingOverlay");
 
 // Canvas
 const canvas: HTMLCanvasElement = document.querySelector(
@@ -25,9 +27,20 @@ const scene = new THREE.Scene();
 scene.background = new THREE.Color("#f4f4f4");
 
 /**
- * Models
+ * Loaders
  */
-const gltfLoader = new GLTFLoader();
+const loadingManager = new THREE.LoadingManager(
+  // Loaded
+  () => {
+    loadingOverlay?.classList.add("loaded");
+  },
+
+  // Progress
+  () => {
+    console.log("progress");
+  }
+);
+const gltfLoader = new GLTFLoader(loadingManager);
 
 /**
  * Head
