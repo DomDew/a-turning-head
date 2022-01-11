@@ -20,8 +20,7 @@
 /* --- VARIABLES --- */
 :root {
   --dark-grey: #2e2e2e;
-  --blue: #348aa7;
-  --blue-light: #73bcd4;
+  --gold: #e6af2e;
 }
 
 * {
@@ -40,7 +39,7 @@ body {
 }
 
 p {
-  font-size: 1vw;
+  font-size: 14px;
   margin: 0;
   padding: 0;
   font-weight: 300;
@@ -179,6 +178,7 @@ a:visited {
   transform: translate(-50%, -50%);
   animation: cursorDistortion 5s infinite;
   mix-blend-mode: exclusion;
+  pointer-events: none;
 }
 
 .hover {
@@ -203,6 +203,7 @@ a:visited {
   background: var(--dark-grey);
   z-index: 5;
   animation: cursorDistortionBefore 3s infinite;
+  pointer-events: none;
 }
 
 .webgl {
@@ -235,7 +236,7 @@ a:visited {
 
 .logo-letter {
   font-weight: 700;
-  font-size: 3vw;
+  font-size: 28px;
 }
 
 .skills {
@@ -263,6 +264,11 @@ a:visited {
   justify-content: space-between;
   text-transform: uppercase;
   opacity: 0;
+  z-index: 5;
+}
+
+#Github {
+  z-index: 1;
 }
 
 .fade-in {
@@ -299,29 +305,29 @@ a:visited {
 
 @keyframes hover-distort {
   33% {
-    transform: translate(-1%) scale(0.98, 1.02) skew(1deg, 3deg);
+    transform: translate(-1%) scale(0.98, 1.02);
   }
 
   66% {
-    transform: translate(2%) scale(0.98, 0.97) skew(-2deg, 1deg);
+    transform: translate(2%) scale(0.98, 0.97);
   }
 
   80% {
-    transform: translate(-2%) scale(1.04, 1.02) skew(3deg, -2deg);
+    transform: translate(-2%) scale(1.04, 1.02);
   }
 }
 
 @keyframes hover-distort2 {
   15% {
-    transform: translate(2%) scale(0.98, 1.02) skew(-2deg, 1deg);
+    transform: translate(2%) scale(0.98, 1.02);
   }
 
   50% {
-    transform: translate(-1%) scale(1.04, 1.02) skew(3deg, -2deg);
+    transform: translate(-1%) scale(1.04, 1.02);
   }
 
   66% {
-    transform: translate(1%) scale(0.98, 0.97) skew(1deg, 3deg);
+    transform: translate(1%) scale(0.98, 0.97);
   }
 }
 
@@ -331,7 +337,7 @@ a:visited {
   align-items: center;
   justify-content: center;
   color: var(--dark-grey);
-  font-size: 3vw;
+  font-size: 28px;
   font-weight: 700;
 }
 
@@ -361,10 +367,18 @@ a:visited {
   animation-name: hover-distort2;
 }
 
+.github div {
+  transition: color 0.2s;
+}
+
+.github:hover div {
+  color: var(--gold);
+}
+
 .arrow {
   margin: 0.2em 0.4em 0 0.4em;
   display: inline;
-  width: 2vw;
+  width: 14px;
   transition: d 0.2s;
 }
 

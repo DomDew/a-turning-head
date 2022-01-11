@@ -1,16 +1,16 @@
 const cycleSkills = () => {
   const skills = ["Typescript", "React", "Next.js", "Three.js"];
-  const skillStore = { skill: skills[0], prevSkill: "Curiosity" };
+  const skillStore = { nextSkill: skills[0], skill: "Curiosity" };
   let cycle = 0;
   const intervalLength = 1000;
 
   const worksButton = document.getElementById("works");
+  const firstLine = document.getElementById("firstLine");
+  const github = document.getElementById("Github");
 
   const handleFades = () => {
-    const prevSkillElement = document.getElementById(skillStore.prevSkill);
-    const skillElement = document.getElementById(skillStore.skill);
-
-    console.log(skillStore);
+    const prevSkillElement = document.getElementById(skillStore.skill);
+    const skillElement = document.getElementById(skillStore.nextSkill);
 
     prevSkillElement?.classList.remove("fade-in");
     prevSkillElement?.classList.add("fade-out");
@@ -22,21 +22,26 @@ const cycleSkills = () => {
     const intervalID = setInterval(() => {
       cycle += 1;
 
-      // First Line Text ändern wenn skill === "Github"
       handleFades();
       if (cycle <= skills.length) {
-        skillStore.prevSkill = skillStore.skill;
-        skillStore.skill = skills[cycle - 1];
+        firstLine && (firstLine.innerHTML = "Developing Websites with");
+        github && (github.style.zIndex = "1");
+        skillStore.skill = skillStore.nextSkill;
+        skillStore.nextSkill = skills[cycle - 1];
       }
 
       if (cycle === skills.length + 1) {
-        skillStore.prevSkill = skillStore.skill;
-        skillStore.skill = "Github";
+        skillStore.skill = skillStore.nextSkill;
+        skillStore.nextSkill = "Github";
       }
 
       if (cycle === skills.length + 2) {
-        skillStore.prevSkill = "Github";
-        skillStore.skill = "Curiosity";
+        skillStore.skill = "Github";
+        skillStore.nextSkill = "Curiosity";
+        github && (github.style.zIndex = "5");
+        firstLine &&
+          (firstLine.innerText =
+            "To see what I've been up to, have a look at my");
         cycle = 0;
         clearInterval(intervalID);
       }
