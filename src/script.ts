@@ -16,6 +16,7 @@ const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
 
 // Queries
 const loadingOverlay = document.getElementById("loadingOverlay");
+const loadingBar = document.getElementById("loadingArrow");
 
 // Canvas
 const canvas: HTMLCanvasElement = document.querySelector(
@@ -32,12 +33,14 @@ scene.background = new THREE.Color("#f4f4f4");
 const loadingManager = new THREE.LoadingManager(
   // Loaded
   () => {
+    window.setTimeout(() => {}, 500);
     loadingOverlay?.classList.add("loaded");
   },
 
   // Progress
-  () => {
-    console.log("progress");
+  (_itemUrl, itemsLoaded, itemsTotal) => {
+    const progressRatio = itemsLoaded / itemsTotal;
+    loadingBar && (loadingBar.style.transform = `scaleX(${progressRatio})`);
   }
 );
 const gltfLoader = new GLTFLoader(loadingManager);

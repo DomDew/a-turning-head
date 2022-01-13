@@ -21,12 +21,16 @@
 :root {
   --dark-grey: #2e2e2e;
   --gold: #e6af2e;
+  --grey: #f4f4f4;
 }
 
 * {
   margin: 0;
   padding: 0;
   cursor: none;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* --- MAIN ---  */
@@ -35,7 +39,7 @@ body {
   overflow: hidden;
   font-family: "Lato", "sans-serif";
   color: var(--dark-grey);
-  background-color: #fff;
+  background-color: var(--grey);
 }
 
 p {
@@ -184,6 +188,16 @@ main {
   transition: opacity 0.6s;
   background-color: var(--dark-grey);
   z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.progress-wrapper {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .loaded {
@@ -259,6 +273,10 @@ main {
 .logo-letter {
   font-weight: 700;
   font-size: 28px;
+}
+
+.logo-letter.overlay {
+  color: var(--grey);
 }
 
 .skills {
@@ -402,6 +420,17 @@ main {
   display: inline;
   width: 14px;
   transition: d 0.2s;
+}
+
+.arrow.overlay {
+  width: 50px;
+  transform: scaleX(0);
+  transition: all 0.2s;
+}
+
+.arrow.overlay path {
+  stroke: var(--grey);
+  transform-origin: left;
 }
 
 .arrow path,
