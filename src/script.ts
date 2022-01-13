@@ -6,17 +6,16 @@ import stretchText from "./stretchText";
 import cursorHover from "./cursorHover";
 import cycleSkills from "./cycleSkills";
 import perlinNoiseInjectionVertexShader from "./shaders/perlinNoiseInjectionVertexShader";
+import isTouchDevice from "./checkTouchDevice";
 
 stretchText();
 cursorHover();
 cycleSkills();
 
-// Check for Touch Device
-const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
-
 // Queries
 const loadingOverlay = document.getElementById("loadingOverlay");
 const loadingBar = document.getElementById("loadingArrow");
+const loadingWrapper = document.getElementById("loadingWrapper");
 
 // Canvas
 const canvas: HTMLCanvasElement = document.querySelector(
@@ -33,8 +32,11 @@ scene.background = new THREE.Color("#f4f4f4");
 const loadingManager = new THREE.LoadingManager(
   // Loaded
   () => {
-    window.setTimeout(() => {}, 500);
-    loadingOverlay?.classList.add("loaded");
+    loadingWrapper?.classList.add("loaded");
+
+    window.setTimeout(() => {
+      loadingOverlay?.classList.add("loaded");
+    }, 400);
   },
 
   // Progress
@@ -198,7 +200,7 @@ window.addEventListener("resize", () => {
  */
 // Base camera
 const camera = new THREE.PerspectiveCamera(
-  45,
+  35,
   sizes.width / sizes.height,
   0.1,
   100

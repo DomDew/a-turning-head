@@ -267,7 +267,9 @@ main {
 
 .logo-container {
   display: flex;
+  align-items: center;
   font-weight: 700;
+  transition: opacity 0.5s;
 }
 
 .logo-letter {
@@ -283,6 +285,7 @@ main {
   position: relative;
   border-bottom: solid 1px var(--dark-grey);
   padding: 2em 0.5em;
+  padding-top: 2.2em;
   display: grid;
   grid-template-columns: 1fr;
 }
@@ -405,6 +408,10 @@ main {
 
 .link-main:hover::after {
   animation-name: hover-distort2;
+}
+
+.github {
+  color: var(--dark-grey);
 }
 
 .github div {
