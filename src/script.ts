@@ -2,11 +2,11 @@ import "./style.css";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import stretchText from "./stretchText";
-import cursorHover from "./cursorHover";
-import cycleSkills from "./cycleSkills";
+import stretchText from "./ts/stretchText";
+import cursorHover from "./ts/cursorHover";
+import cycleSkills from "./ts/cycleSkills";
 import perlinNoiseInjectionVertexShader from "./shaders/perlinNoiseInjectionVertexShader";
-import isTouchDevice from "./checkTouchDevice";
+import isTouchDevice from "./ts/checkTouchDevice";
 
 stretchText();
 cursorHover();
